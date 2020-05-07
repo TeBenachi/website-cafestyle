@@ -1,20 +1,25 @@
-const selectElement = function (element) {
-    return document.querySelector(element);
-};
+document.addEventListener('DOMContentLoaded', () => {
 
-let menuToggler = selectElement('.menu-toggle');
-let body = selectElement('body');
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
 
-menuToggler.addEventListener('click', function () {
-    body.classList.toggle('open');
-})
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
 
-// Scroll reveal 
-window.sr = ScrollReveal();
+        // Add a click event on each of them
+        $navbarBurgers.forEach(el => {
+            el.addEventListener('click', () => {
 
-// sr.reveal('.animate-left', (
-//     origin: 'left',
-//     duration: 1000,
-//     distance: '25rem',
-//     delay: 300
-// ));
+                // Get the target from the "data-target" attribute
+                const target = el.dataset.target;
+                const $target = document.getElementById(target);
+
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                el.classList.toggle('is-active');
+                $target.classList.toggle('is-active');
+
+            });
+        });
+    }
+
+});
